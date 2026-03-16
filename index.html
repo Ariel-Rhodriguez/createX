@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rho x CREATE-X</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Playfair+Display:wght@400;500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Inter', sans-serif; background: #fff; color: #1a1a1a; -webkit-font-smoothing: antialiased; }
+
+  /* NAV */
+  nav {
+    background: #111f14;
+    padding: 0 56px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #1e321f;
+  }
+  .nav-left { display: flex; align-items: center; gap: 22px; }
+  .rho-logo {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 26px;
+    font-weight: 400;
+    color: #ffffff;
+    letter-spacing: 0.5px;
+    line-height: 1;
+  }
+  .nav-sep { width: 1px; height: 22px; background: #2a4030; }
+  .createx-tag {
+    font-size: 11px;
+    font-weight: 500;
+    color: #c9b87a;
+    letter-spacing: 1.8px;
+    text-transform: uppercase;
+  }
+
+  /* HERO */
+  .hero {
+    background: #111f14;
+    padding: 88px 56px 80px;
+    display: flex;
+    align-items: center;
+    gap: 80px;
+  }
+  .hero-text { flex: 1; }
+  .hero-kicker {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #c9b87a;
+    margin-bottom: 22px;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 52px;
+    font-weight: 400;
+    line-height: 1.12;
+    color: #ffffff;
+    margin-bottom: 24px;
+    letter-spacing: -0.3px;
+  }
+  .hero h1 em { color: #5bbf85; font-style: normal; }
+  .hero-desc {
+    font-size: 15px;
+    color: #7a9e82;
+    line-height: 1.75;
+    max-width: 440px;
+    font-weight: 300;
+  }
+  .hero-stats { display: flex; flex-direction: column; gap: 2px; min-width: 250px; }
+  .stat-card {
+    background: #162819;
+    border: 1px solid #1f3522;
+    padding: 28px 30px;
+  }
+  .stat-card:first-child { border-radius: 12px 12px 0 0; }
+  .stat-card:last-child { border-radius: 0 0 12px 12px; border-top: none; }
+  .stat-n {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 42px;
+    font-weight: 400;
+    color: #5bbf85;
+    line-height: 1;
+    margin-bottom: 7px;
+  }
+  .stat-l { font-size: 12px; color: #567a5e; line-height: 1.5; font-weight: 400; }
+
+  /* CTA STRIP */
+  .cta-strip {
+    background: #f8f8f6;
+    padding: 18px 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #ececea;
+  }
+  .cta-strip-text { font-size: 14px; color: #444; }
+  .cta-strip-text strong { color: #111; font-weight: 600; }
+  .cta-btns { display: flex; gap: 10px; }
+  .btn {
+    display: inline-block;
+    padding: 9px 20px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+    font-family: 'Inter', sans-serif;
+    transition: opacity 0.18s;
+  }
+  .btn:hover { opacity: 0.82; }
+  .btn-dark { background: #111f14; color: #fff; }
+  .btn-light { background: #fff; color: #111; border: 1px solid #ddd; }
+
+  /* PRODUCTS */
+  .products { padding: 72px 56px; background: #fff; }
+  .sec-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: #bbb;
+    margin-bottom: 36px;
+  }
+  .prod-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .prod-card {
+    border: 1px solid #e8e8e6;
+    border-radius: 14px;
+    padding: 36px 28px 30px;
+    background: #fafaf8;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .prod-card:hover { border-color: #3a7a55; box-shadow: 0 4px 20px rgba(0,0,0,0.05); }
+  .prod-eyebrow { font-size: 10px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: #3a7a55; margin-bottom: 14px; }
+  .prod-card h3 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 22px;
+    font-weight: 400;
+    color: #111;
+    margin-bottom: 14px;
+    letter-spacing: -0.2px;
+  }
+  .prod-big {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 38px;
+    font-weight: 400;
+    color: #111f14;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .prod-big-unit { font-size: 15px; font-family: 'Inter', sans-serif; font-weight: 500; color: #555; }
+  .prod-card p { font-size: 13.5px; color: #666; line-height: 1.7; font-weight: 300; margin-top: 10px; }
+
+  /* PERKS */
+  .perks { background: #111f14; padding: 72px 56px; }
+  .perks .sec-label { color: #243d27; }
+  .perks-top { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 36px; }
+  .perks-h {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 34px;
+    font-weight: 400;
+    color: #fff;
+    letter-spacing: -0.3px;
+  }
+  .perks-sub { font-size: 13px; color: #567a5e; font-weight: 300; }
+  .perks-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+  .perk {
+    background: #162819;
+    border: 1px solid #1f3522;
+    border-radius: 10px;
+    padding: 18px 16px;
+    transition: border-color 0.2s;
+  }
+  .perk:hover { border-color: #3a7a55; }
+  .perk-co { font-size: 10px; font-weight: 600; color: #567a5e; letter-spacing: 1.2px; text-transform: uppercase; margin-bottom: 6px; }
+  .perk-val { font-size: 13px; font-weight: 500; color: #5bbf85; line-height: 1.45; }
+
+  /* WHY */
+  .why { background: #f8f8f6; padding: 72px 56px; }
+  .why-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; }
+  .why-card {
+    background: #fff;
+    border: 1px solid #e8e8e6;
+    border-radius: 12px;
+    padding: 26px 22px;
+    transition: border-color 0.2s;
+  }
+  .why-card:hover { border-color: #3a7a55; }
+  .why-n { font-size: 10px; color: #ccc; font-weight: 600; letter-spacing: 1px; margin-bottom: 14px; }
+  .why-card h4 { font-size: 14px; font-weight: 600; margin-bottom: 8px; color: #111; line-height: 1.3; }
+  .why-card p { font-size: 12.5px; color: #777; line-height: 1.65; font-weight: 300; }
+
+  /* FOOTER */
+  footer {
+    background: #111f14;
+    padding: 26px 56px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 32px;
+  }
+  .footer-left { display: flex; align-items: center; gap: 16px; }
+  .footer-logo {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 18px;
+    color: #fff;
+    font-weight: 400;
+    opacity: 0.6;
+  }
+  footer p { font-size: 10.5px; color: #2f4d33; line-height: 1.6; max-width: 600px; }
+  .footer-link { font-size: 12px; color: #5bbf85; text-decoration: none; white-space: nowrap; opacity: 0.85; }
+  .footer-link:hover { opacity: 1; text-decoration: underline; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-left">
+    <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAgEASABIAAD/2wBDAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQH/2wBDAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQH/wAARCASwBLADAREAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD+LGkYBQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAFABQAUAfr3/AMEqP+COPxy/4K0f8L4/4Ux8UPhR8N/+AAf8Kv8A+Ek/4WfJ4vT+2f8Ahav/AAsT+x/7D/4RTw14iz/Z3/Ct9V/tP7f9jx9u0/7L9ozc+QDUb38j9ev+IOT9uT/o5/8AZR/7/wDxe/8Ana0Fcj7h/wAQcn7cn/Rz/wCyj/3/APi9/wDO1oDkfcP+IOT9uT/o5/8AZR/7/wDxe/8Ana0ByPuH/EHJ+3J/0c/+yj/3/wDi9/8AO1oDkfcP+IOT9uT/AKOf/ZR/7/8Axe/+drQHI+4f8Qcn7cn/AEc/+yj/AN//AIvf/O1oDkfcP+IOT9uT/o5/9lH/AL//ABe/+drQHI+4f8Qc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" alt="Rho" style="height:38px; width:auto; object-fit:contain;">
+    <div class="nav-sep"></div>
+    <div class="createx-tag">Georgia Tech CREATE-X</div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-text">
+    <div class="hero-kicker">Rho × CREATE-X Partnership</div>
+    <h1>Banking built for<br><em>Georgia Tech</em><br>founders</h1>
+    <p class="hero-desc">CREATE-X has launched 770+ student startups valued at over $2.8B. Rho is the banking platform built to help those startups grow — from first dollar raised to Series A and beyond.</p>
+  </div>
+  <div class="hero-stats">
+    <div class="stat-card">
+      <div class="stat-n">770+</div>
+      <div class="stat-l">Student startups launched<br>through CREATE-X</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-n">$2.8B+</div>
+      <div class="stat-l">Total valuation of<br>CREATE-X startups</div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA STRIP -->
+<div class="cta-strip">
+  <div class="cta-strip-text"><strong>Ready to get started?</strong> Takes 10 minutes to open your account.</div>
+  <div class="cta-btns">
+    <a href="https://sales.rho.co/olivia_harbin" class="btn btn-dark" target="_blank">Sign up for Rho →</a>
+    <a href="https://rho.cal.com/olivia.harbin" class="btn btn-light" target="_blank">Book time with Olivia</a>
+  </div>
+</div>
+
+<!-- PRODUCTS -->
+<div class="products">
+  <div class="sec-label">What Rho Offers</div>
+  <div class="prod-grid">
+    <div class="prod-card">
+      <div class="prod-eyebrow">Earn Cashback</div>
+      <h3>Corporate Cards</h3>
+      <div class="prod-big">Up to 2%<span class="prod-big-unit"> cashback</span></div>
+      <p>Instant virtual cards, spend controls, and up to 2% cash back on all spend from Day 1.</p>
+    </div>
+    <div class="prod-card">
+      <div class="prod-eyebrow">Save on Fees</div>
+      <h3>Checking & Savings</h3>
+      <div class="prod-big">$75M<span class="prod-big-unit"> FDIC</span></div>
+      <p>Fee-free domestic payments, accept investor wires, pay employees, and manage startup cash — all in one place.</p>
+    </div>
+    <div class="prod-card">
+      <div class="prod-eyebrow">Earn Yield</div>
+      <h3>Rho Treasury</h3>
+      <div class="prod-big" style="font-size:26px; padding-top:6px;">Competitive<span class="prod-big-unit"> rates</span></div>
+      <p>Invest idle cash in U.S. T-Bills, Morgan Stanley MULSX, or the Vanguard VSFTX Fund. Competitive yield with full liquidity.</p>
+    </div>
+  </div>
+</div>
+
+<!-- PERKS -->
+<div class="perks">
+  <div class="sec-label">Partner Perks</div>
+  <div class="perks-top">
+    <div class="perks-h">$1M+ in savings for<br>Rho customers</div>
+    <div class="perks-sub">Unlocked when you bank with Rho</div>
+  </div>
+  <div class="perks-grid">
+    <div class="perk"><div class="perk-co">AWS</div><div class="perk-val">Up to $5K in credits</div></div>
+    <div class="perk"><div class="perk-co">Anthropic</div><div class="perk-val">Up to $500 in API credits</div></div>
+    <div class="perk"><div class="perk-co">Notion</div><div class="perk-val">6 months Business free</div></div>
+    <div class="perk"><div class="perk-co">Slack</div><div class="perk-val">25% off Pro & Business+</div></div>
+    <div class="perk"><div class="perk-co">Gusto</div><div class="perk-val">6 months free</div></div>
+    <div class="perk"><div class="perk-co">Intercom</div><div class="perk-val">100% off 1st year</div></div>
+    <div class="perk"><div class="perk-co">HubSpot</div><div class="perk-val">Up to 30% off</div></div>
+    <div class="perk"><div class="perk-co">Deel</div><div class="perk-val">20% off for 1 year</div></div>
+    <div class="perk"><div class="perk-co">Carta</div><div class="perk-val">20% off first year</div></div>
+    <div class="perk"><div class="perk-co">QuickBooks</div><div class="perk-val">30% off for 12 months</div></div>
+    <div class="perk"><div class="perk-co">Segment</div><div class="perk-val">Up to $50K in credits</div></div>
+    <div class="perk"><div class="perk-co">ElevenLabs</div><div class="perk-val">Up to $4K in credits</div></div>
+  </div>
+</div>
+
+<!-- WHY -->
+<div class="why">
+  <div class="sec-label">Why CREATE-X Founders Choose Rho</div>
+  <div class="why-grid">
+    <div class="why-card">
+      <div class="why-n">01</div>
+      <h4>$0 Subscription Fees</h4>
+      <p>One of the only platforms with no monthly fees — so your runway goes further.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-n">02</div>
+      <h4>Backed by Webster Bank</h4>
+      <p>$76B+ in assets. FDIC-insured with a rock-solid partner bank behind every dollar.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-n">03</div>
+      <h4>24/7 Human Support</h4>
+      <p>Real people, always. Dedicated account manager for the life of your relationship.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-n">04</div>
+      <h4>Built to Scale with You</h4>
+      <p>Perplexity and many others started on Rho and never left — pre-seed to Series B+.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-n">05</div>
+      <h4>Everything in One Place</h4>
+      <p>Banking, cards, bill pay, expenses, treasury — one clean dashboard, no juggling.</p>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div style="flex:1">
+    <p>Rho is a fintech company, not a bank. Checking and card services provided by Webster Bank, N.A., member FDIC. Savings provided by American Deposit Management Co. and its partner banks. Investment products are not FDIC insured and may lose value.</p>
+  </div>
+  <a href="https://www.rho.co/perks" class="footer-link" target="_blank">View all perks →</a>
+</footer>
+
+</body>
+</html>
